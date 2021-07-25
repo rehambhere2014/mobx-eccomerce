@@ -1,0 +1,11 @@
+  
+{
+  "app_title": "Title",
+  "language": "Language",
+  "welcome_message": "Welcome",
+  "home":"Home",
+  "about":"About",
+  "products":"Products",
+  "login":"login",
+  "cart":"cart"
+}

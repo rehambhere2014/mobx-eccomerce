@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react-lite'
+import { useStore } from './store/RootStore';
+import { products_url as url } from './store/Api'
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './components/pages/homePage/Home';
+import Navbar from './components/navbar/Navbar';
+import GlobalStyle from './globalStyles';
+import Products from './components/pages/productsPage/Products';
+import SingleProduct from './components/pages/singleProduct/SingleProduct';
+const App: React.FC = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    <Router>
+      <Navbar />
+
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path="/products" component={Products} exact />
+        <Route path="/products/:id" children={<SingleProduct />} exact />
+      </Switch>
+
+
+      <GlobalStyle />
+    </Router>
+
+  )
 }
 
-export default App;
+export default observer(App)
